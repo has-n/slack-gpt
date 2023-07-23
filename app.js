@@ -13,9 +13,11 @@ const app = new App({
 });
 
 app.event('message', async ({ event, client }) => {
+  console.log("Message received");
+  console.log(event);
+  console.log(client);
   try {
     // Check if the message is from a direct message channel
-    if (event.channel_type === 'im' && event.text) {
       // Send a loading message
       const loadingMessageResponse = await client.chat.postMessage({
         channel: event.channel,
@@ -68,7 +70,6 @@ app.event('message', async ({ event, client }) => {
           },
         ],
       });
-    }
   } catch (error) {
     console.error(error);
   }
